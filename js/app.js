@@ -32,7 +32,8 @@ var player;
 var stars; 
 var bombs;
 var score = 0;
-var counter = 0;
+var collectCounter = 0;
+var starCounter = 0;
 var scale = 0;
 var scoreText;
 
@@ -98,12 +99,13 @@ function collectStar (player, star)
     score += 10;
     scoreText.setText('Score: ' + score);
 
-    counter += 1
+    collectCounter += 1
+    starCounter += 1
 
-    if(counter==5){
+    if(collectCounter==5){
         scale+=1;
         player.setScale(scale);
-        counter=0
+        collectCounter=0
     }
 
     if (stars.countActive(true) < 12)
@@ -114,6 +116,36 @@ function collectStar (player, star)
         star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     }
 
+    switch(starCounter){
+        case starCounter=1:
+            stars.setTint(0xff0000);
+            break;
+
+        case starCounter=2:
+            stars.setTint(0xffa500);
+            break;
+
+        case starCounter=3:
+            stars.setTint(0xffff00);
+            break;
+
+        case starCounter=4:
+            stars.setTint(0x00ff00);
+            break;
+
+        case starCounter=5:
+            stars.setTint(0x0000ff);
+            break;
+
+        case starCounter=6:
+            stars.setTint(0x4b0082);
+            break;
+
+        case starCounter=7:
+            stars.setTint(0x8f00ff);
+            starCounter = 0;
+            break;
+    }
 
 }
 
