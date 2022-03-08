@@ -32,6 +32,8 @@ var player;
 var stars; 
 var bombs;
 var score = 0;
+var counter = 0;
+var scale = 0;
 var scoreText;
 
 function create ()
@@ -87,8 +89,6 @@ function create ()
 
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
-    // this.physics.add.collider(bombs, platforms);
-
     this.physics.add.collider(player, null, this);
 }
 
@@ -98,6 +98,14 @@ function collectStar (player, star)
     score += 10;
     scoreText.setText('Score: ' + score);
 
+    counter += 1
+
+    if(counter==5){
+        scale+=1;
+        player.setScale(scale);
+        counter=0
+    }
+
     if (stars.countActive(true) < 12)
     {
         var x = Phaser.Math.Between(0, 800);
@@ -106,7 +114,7 @@ function collectStar (player, star)
         star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     }
 
-    
+
 }
 
 function update ()
