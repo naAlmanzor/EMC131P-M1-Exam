@@ -87,11 +87,9 @@ function create ()
 
     scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
-    bombs = this.physics.add.group();
+    // this.physics.add.collider(bombs, platforms);
 
-    this.physics.add.collider(bombs, platforms);
-
-    this.physics.add.collider(player, bombs, hitBomb, null, this);
+    this.physics.add.collider(player, null, this);
 }
 
 function collectStar (player, star)
@@ -100,36 +98,16 @@ function collectStar (player, star)
     score += 10;
     scoreText.setText('Score: ' + score);
 
-    if (stars.countActive(true) === 0)
+    if (stars.countActive(true) < 12)
     {
-        stars.children.iterate(function (child) {
+        var x = Phaser.Math.Between(0, 800);
 
-            child.enableBody(true, child.x, 0, true, true);
-
-        });
-
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
-
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        bomb.allowGravity = false;
-
+        var star = stars.create(x, 16, 'star');
+        star.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     }
+
+    
 }
-
-function hitBomb (player)
-{
-    this.physics.pause();
-
-    player.setTint(0xff0000);
-
-    player.anims.play('turn');
-
-    gameOver = true;
-}
-
 
 function update ()
 {   
