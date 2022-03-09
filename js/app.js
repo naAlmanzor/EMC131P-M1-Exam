@@ -20,8 +20,9 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('sky', 'assets/images/sky.png');
-    this.load.image('ground', 'assets/images/platform.png');
+    this.load.image('bg', 'assets/images/background.png');
+    this.load.image('ground', 'assets/images/platform-land.png');
+    this.load.image('floating-land', 'assets/images/platform-elevated.png');
     this.load.image('star', 'assets/images/star.png');
     this.load.image('bomb', 'assets/images/bomb.png');
     this.load.spritesheet('dude', 'assets/images/dude.png',{ frameWidth: 32, frameHeight: 48 });
@@ -39,15 +40,15 @@ var scoreText;
 
 function create ()
 {
-    this.add.image(400, 300, 'sky');
+    this.add.image(400, 300, 'bg');
 
     platforms = this.physics.add.staticGroup();
 
     platforms.create(400, 568, 'ground').setScale(2).refreshBody();
 
-    platforms.create(600, 400, 'ground');
-    platforms.create(50, 250, 'ground');
-    platforms.create(750, 220, 'ground');
+    platforms.create(600, 400, 'floating-land');
+    platforms.create(50, 250, 'floating-land');
+    platforms.create(750, 220, 'floating-land');
 
     player = this.physics.add.sprite(100, 450, 'dude');
 
