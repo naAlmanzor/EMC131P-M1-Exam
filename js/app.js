@@ -118,31 +118,31 @@ function collectStar (player, star)
 
     switch(starCounter){
         case starCounter=1:
-            stars.setTint(0xff0000);
+            player.setTint(0xff0000);
             break;
 
         case starCounter=2:
-            stars.setTint(0xffa500);
+            player.setTint(0xffa500);
             break;
 
         case starCounter=3:
-            stars.setTint(0xffff00);
+            player.setTint(0xffff00);
             break;
 
         case starCounter=4:
-            stars.setTint(0x00ff00);
+            player.setTint(0x00ff00);
             break;
 
         case starCounter=5:
-            stars.setTint(0x0000ff);
+            player.setTint(0x0000ff);
             break;
 
         case starCounter=6:
-            stars.setTint(0x4b0082);
+            player.setTint(0x4b0082);
             break;
 
         case starCounter=7:
-            stars.setTint(0x8f00ff);
+            player.setTint(0x8f00ff);
             starCounter = 0;
             break;
     }
